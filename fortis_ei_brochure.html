@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortis EI - AI-Native Process Safety Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy: #0A2342;
+            --navy-light: #1a3a5c;
+            --teal: #00A8E8;
+            --teal-dark: #0088c7;
+            --white: #ffffff;
+            --light-gray: #f5f7fa;
+            --medium-gray: #e8ecf0;
+            --text-dark: #1a1a2e;
+            --text-gray: #5a6a7a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            background: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Slide Container */
+        .slide {
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Page 1: Cover */
+        .slide-cover {
+            background: linear-gradient(135deg, rgba(10, 35, 66, 0.92) 0%, rgba(10, 35, 66, 0.85) 50%, rgba(0, 168, 232, 0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .cover-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .cover-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(10, 35, 66, 0.95) 0%, rgba(10, 35, 66, 0.8) 60%, rgba(0, 168, 232, 0.4) 100%);
+            z-index: 0;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 40px;
+            left: 60px;
+            z-index: 10;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--teal);
+        }
+
+        .tagline {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+        }
+
+        .cover-title {
+            font-size: 64px;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .cover-title span {
+            color: var(--teal);
+        }
+
+        .cover-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .slogan {
+            display: inline-flex;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .slogan-item {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--white);
+            padding: 12px 30px;
+            border: 2px solid var(--teal);
+            border-radius: 30px;
+            background: rgba(0, 168, 232, 0.15);
+        }
+
+        .cover-contact {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 15px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--teal);
+        }
+
+        /* Inner Pages */
+        .slide-inner {
+            background: var(--white);
+            min-height: 100vh;
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--white);
+        }
+
+        .header-logo span {
+            color: var(--teal);
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s;
+        }
+
+        .nav-dot.active {
+            background: var(--teal);
+        }
+
+        .page-content {
+            padding: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-size: 42px;
+            color: var(--navy);
+            margin-bottom: 50px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--teal);
+        }
+
+        /* Two Column Layout */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .section-block {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title-num {
+            width: 40px;
+            height: 40px;
+            background: var(--navy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .section-text {
+            font-size: 16px;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Focus Cards */
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .focus-card {
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid var(--teal);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10, 35, 66, 0.1);
+        }
+
+        .focus-card h4 {
+            font-size: 16px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .focus-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* Founder Section */
+        .founder-card {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 35px;
+            border-radius: 15px;
+            color: var(--white);
+            margin-top: 30px;
+        }
+
+        .founder-card h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--teal);
+        }
+
+        .founder-card p {
+            font-size: 15px;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Page 3: Principles */
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .principle-card {
+            background: var(--white);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(10, 35, 66, 0.08);
+            text-align: center;
+            border-top: 4px solid var(--teal);
+            transition: transform 0.3s;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .principle-num {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--teal);
+            opacity: 0.3;
+            margin-bottom: 15px;
+        }
+
+        .principle-card h3 {
+            font-size: 20px;
+            color: var(--navy);
+            margin-bottom: 15px;
+        }
+
+        .principle-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 40px;
+            border-radius: 15px;
+            color: var(--white);
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .mission-box h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--teal);
+        }
+
+        .mission-box p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Tech Domains */
+        .tech-section-title {
+            font-size: 28px;
+            color: var(--navy);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .tech-domain {
+            background: var(--light-gray);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tech-domain:hover {
+            background: var(--white);
+            border-color: var(--teal);
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.15);
+        }
+
+        .tech-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--navy);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+        }
+
+        .tech-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--teal);
+        }
+
+        .tech-domain h4 {
+            font-size: 14px;
+            color: var(--navy);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .tech-domain p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Page 4: Solutions */
+        .roles-section {
+            margin-bottom: 50px;
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+        }
+
+        .role-card {
+            background: var(--light-gray);
+            padding: 25px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .role-card:hover {
+            background: var(--navy);
+            transform: translateY(-5px);
+        }
+
+        .role-card:hover h4,
+        .role-card:hover p {
+            color: var(--white);
+        }
+
+        .role-card h4 {
+            font-size: 15px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .solution-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(10, 35, 66, 0.06);
+            border-left: 4px solid var(--teal);
+            transition: all 0.3s;
+        }
+
+        .solution-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 30px rgba(10, 35, 66, 0.1);
+        }
+
+        .solution-card h4 {
+            font-size: 18px;
+            color: var(--navy);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .solution-card h4 .num {
+            width: 28px;
+            height: 28px;
+            background: var(--teal);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .solution-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+            line-height: 1.7;
+        }
+
+        .services-section h3 {
+            font-size: 24px;
+            color: var(--navy);
+            margin-bottom: 25px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-item {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            background: var(--teal);
+            transform: translateY(-3px);
+        }
+
+        .service-item:hover h4,
+        .service-item:hover p {
+            color: var(--white);
+        }
+
+        .service-item h4 {
+            font-size: 14px;
+            color: var(--navy);
+            margin-bottom: 8px;
+        }
+
+        .service-item p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Page 5: Partners & Contact */
+        .partners-section {
+            margin-bottom: 50px;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+        }
+
+        .partner-logo {
+            background: var(--light-gray);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .partner-logo:hover {
+            background: var(--white);
+            border-color: var(--teal);
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.15);
+        }
+
+        .partner-logo .logo-placeholder {
+            width: 60px;
+            height: 60px;
+            background: var(--navy);
+            border-radius: 10px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .partner-logo h4 {
+            font-size: 13px;
+            color: var(--navy);
+            line-height: 1.4;
+        }
+
+        .sister-company {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+            padding: 35px;
+            border-radius: 15px;
+            color: var(--white);
+            margin-bottom: 50px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .sister-company-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--teal);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .sister-company-icon svg {
+            width: 45px;
+            height: 45px;
+            fill: var(--white);
+        }
+
+        .sister-company h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .sister-company p {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        .contact-section {
+            background: var(--light-gray);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            font-size: 32px;
+            color: var(--navy);
+            margin-bottom: 10px;
+        }
+
+        .contact-section .cta {
+            font-size: 18px;
+            color: var(--teal);
+            font-weight: 600;
+            margin-bottom: 40px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-info .icon {
+            width: 50px;
+            height: 50px;
+            background: var(--navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-info .icon svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--teal);
+        }
+
+        .contact-info h4 {
+            font-size: 13px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        .contact-info p {
+            font-size: 15px;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Background Images */
+        .bg-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .content-with-bg {
+            position: relative;
+        }
+
+        .content-with-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1513828583688-c52646db42da?w=800') center/cover;
+            opacity: 0.08;
+            z-index: 0;
+            border-radius: 20px;
+        }
+
+        /* Decorative Elements */
+        .teal-accent {
+            color: var(--teal);
+        }
+
+        .navy-bg {
+            background: var(--navy);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .tech-grid, .roles-grid, .partners-grid, .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .focus-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .two-col, .solutions-grid {
+                grid-template-columns: 1fr;
+            }
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+            .cover-title {
+                font-size: 42px;
+            }
+            .page-content {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Cover -->
+    <section class="slide slide-cover">
+        <img src="https://www.qatarenergylng.qa/Portals/0/ThemePluginPro/uploads/2024/4/17/LNGImage12.jpg" alt="LNG Plant" class="cover-bg">
+        <div class="cover-overlay"></div>
+
+        <div class="logo">
+            <div class="logo-text">FORTIS <span>EI</span></div>
+        </div>
+
+        <div class="cover-content">
+            <div class="tagline">AI-Native Process Safety Intelligence</div>
+            <h1 class="cover-title">Fortis EI<br><span>Energy Intelligence</span></h1>
+            <p class="cover-subtitle">Strengthening resilience, transparency, and performance across the next generation of energy assets</p>
+
+            <div class="slogan">
+                <span class="slogan-item">Safe</span>
+                <span class="slogan-item">Smart</span>
+                <span class="slogan-item">Sustainable</span>
+            </div>
+
+            <div class="cover-contact">
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                    <span>Qatar</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>+974 332 531 13</span>
+                </div>
+                <div class="contact-item">
+                    <svg class="contact-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                    <span>www.fortisei.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 2: Who We Are & Our Focus -->
+    <section class="slide slide-inner">
+        <div class="slide-header">
+            <div class="header-logo">FORTIS <span>EI</span></div>
+            <div class="header-nav">
+                <div class="nav-dot"></div>
+                <div class="nav-dot active"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+            </div>
+        </div>
+
+        <div class="page-content content-with-bg">
+            <h2 class="page-title">Who We Are & Our Focus</h2>
+
+            <div class="two-col">
+                <div>
+                    <div class="section-block">
+                        <h3 class="section-title">Who We Are</h3>
+                        <p class="section-text">Fortis EI is a Qatar-based industrial technology company dedicated exclusively to the Oil & Gas sector, delivering advanced process safety, emission management, digitalization, and industrial intelligence solutions across hydrocarbon facilities.</p>
+                    </div>
+
+                    <div class="section-block">
+                        <h3 class="section-title">Our Core Focus</h3>
+                        <div class="focus-grid">
+                            <div class="focus-card">
+                                <h4>LNG Facilities</h4>
+                                <p>Liquefied Natural Gas infrastructure and operations</p>
+                            </div>
+                            <div class="focus-card">
+                                <h4>Refineries</h4>
+                                <p>Petroleum refining and processing plants</p>
+                            </div>
+                            <div class="focus-card">
+                                <h4>Petrochemical Plants</h4>
+                                <p>Chemical and polymer production facilities</p>
+                            </div>
+                            <div class="focus-card">
+                                <h4>Pipeline Networks</h4>
+                                <p>Transmission and distribution systems</p>
+                            </div>
+                            <div class="focus-card">
+                                <h4>Compressor Stations</h4>
+                                <p>Gas compression and handling units</p>
+                            </div>
+                            <div class="focus-card">
+                                <h4>Offshore Assets</h4>
+                                <p>Marine and offshore energy platforms</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="founder-card">
+                        <h4>Founded on Deep Domain Expertise</h4>
+                        <p>Dr. Satheesh Kumar brings over 20 years of Oil & Gas experience, with 16+ years specialized in Fire & Gas detection and mitigation systems expertise in Qatar. His leadership ensures that Fortis EI understands the unique challenges and regulatory requirements of the region's energy infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 3: Operating Principles & Technology Ecosystem -->
+    <section class="slide slide-inner">
+        <div class="slide-header">
+            <div class="header-logo">FORTIS <span>EI</span></div>
+            <div class="header-nav">
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot active"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <h2 class="page-title">Operating Principles & Technology Ecosystem</h2>
+
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-num">01</div>
+                    <h3>Safety is Foundational</h3>
+                    <p>Every solution we deliver is built on the fundamental principle that process safety cannot be compromised. We embed safety-first thinking into every layer of our technology and service delivery.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-num">02</div>
+                    <h3>Technology Must Be Credible</h3>
+                    <p>We represent and implement only proven, certified technologies from established OEMs. Our solutions undergo rigorous validation to ensure they meet the demanding standards of critical energy infrastructure.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-num">03</div>
+                    <h3>Sector Discipline First</h3>
+                    <p>Our exclusive focus on Oil & Gas means we understand the sector's unique operational context, regulatory landscape, and performance requirements. We speak the language of your industry fluently.</p>
+                </div>
+            </div>
+
+            <div class="mission-box">
+                <h3>Our Mission</h3>
+                <p>Enable intelligent safety governance and operational transparency across high-consequence critical energy infrastructure through AI-native process safety intelligence.</p>
+            </div>
+
+            <h3 class="tech-section-title">Technology Domains We Cover</h3>
+            <div class="tech-grid">
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h4>Process Safety Barrier Intelligence</h4>
+                    <p>Layer of protection analysis</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                    <h4>Advanced Multi-Hazard Detection</h4>
+                    <p>Comprehensive threat identification</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M4 6h18V4H4c-1.1 0-2 .9-2 2v11H0v3h14v-3H4V6zm19 2h-6c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V9c0-.55-.45-1-1-1zm-1 9h-4v-7h4v7z"/></svg>
+                    </div>
+                    <h4>Wireless Connectivity & Smart Digitalisation</h4>
+                    <p>Seamless integration</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4s1.79-4 4-4h.71C7.37 7.69 9.48 6 12 6c3.04 0 5.5 2.46 5.5 5.5v.5H19c1.66 0 3 1.34 3 3s-1.34 3-3 3z"/></svg>
+                    </div>
+                    <h4>AI-Driven Autonomous Remote Site Operations</h4>
+                    <p>Intelligent automation</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M22 9V7h-2V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-2h2v-2h-2v-2h2v-2h-2V9h2zm-4 10H4V5h14v14zM6 13h5v4H6zm6-6h4v3h-4zM6 7h5v5H6zm6 4h4v6h-4z"/></svg>
+                    </div>
+                    <h4>Asset Management and STO Intelligence</h4>
+                    <p>Strategic maintenance</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                    </div>
+                    <h4>Smart AI Factory in a Box — Intelligent IR 4.0</h4>
+                    <p>Integrated solutions</p>
+                </div>
+                <div class="tech-domain">
+                    <div class="tech-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.97 0-9 4.03-9 9zM5.6 10.25c0 1.38 1.12 2.5 2.5 2.5.53 0 1.01-.16 1.42-.44l-.02.19c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5l-.02-.19c.4.28.89.44 1.42.44 1.38 0 2.5-1.12 2.5-2.5 0-1-.59-1.85-1.43-2.25.84-.4 1.43-1.25 1.43-2.25 0-1.38-1.12-2.5-2.5-2.5-.53 0-1.01.16-1.42.44l.02-.19C14.5 2.12 13.38 1 12 1S9.5 2.12 9.5 3.5l.02.19c-.4-.28-.89-.44-1.42-.44-1.38 0-2.5 1.12-2.5 2.5 0 1 .59 1.85 1.43 2.25-.84.4-1.43 1.25-1.43 2.25zM12 5.5c1.38 0 2.5 1.12 2.5 2.5s-1.12 2.5-2.5 2.5S9.5 9.38 9.5 8s1.12-2.5 2.5-2.5zM3 13c0 4.97 4.03 9 9 9 0-4.97-4.03-9-9-9z"/></svg>
+                    </div>
+                    <h4>ESG and Decarbonization AI-Native Solutions</h4>
+                    <p>Sustainable future</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 4: Solutions & Services -->
+    <section class="slide slide-inner">
+        <div class="slide-header">
+            <div class="header-logo">FORTIS <span>EI</span></div>
+            <div class="header-nav">
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot active"></div>
+                <div class="nav-dot"></div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <h2 class="page-title">Solutions & Services</h2>
+
+            <div class="roles-section">
+                <h3 class="section-title" style="margin-bottom: 30px;">Our Role in Every Engagement</h3>
+                <div class="roles-grid">
+                    <div class="role-card">
+                        <h4>Market Representative</h4>
+                        <p>Strategic market presence</p>
+                    </div>
+                    <div class="role-card">
+                        <h4>Technical Advisor</h4>
+                        <p>Expert consultation</p>
+                    </div>
+                    <div class="role-card">
+                        <h4>System Integrator</h4>
+                        <p>Seamless integration</p>
+                    </div>
+                    <div class="role-card">
+                        <h4>Deployment & Commissioning Partner</h4>
+                        <p>Full implementation</p>
+                    </div>
+                    <div class="role-card">
+                        <h4>Lifecycle Support Provider</h4>
+                        <p>Ongoing excellence</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="tech-section-title" style="text-align: left;">Technology & Solutions Portfolio</h3>
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <h4><span class="num">1</span> AI-Native Process Safety Barrier Intelligence</h4>
+                    <p>Advanced barrier monitoring systems with AI-driven predictive capabilities for real-time safety layer assessment and proactive risk mitigation.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">2</span> Advanced Multi-Hazard Detection</h4>
+                    <p>Integrated detection systems for gas, fire, smoke, and thermal hazards using cutting-edge sensor technology and AI analytics.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">3</span> Wireless Connectivity & Smart Digitalisation</h4>
+                    <p>Industrial IoT solutions enabling seamless wireless connectivity across remote and challenging energy infrastructure environments.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">4</span> AI-Driven Autonomous Remote Site Operations</h4>
+                    <p>Intelligent automation systems enabling unmanned operations with real-time monitoring, predictive maintenance, and autonomous response.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">5</span> Asset Management & STO Intelligence</h4>
+                    <p>Comprehensive asset integrity management with AI-powered shutdown, turnaround, and outage (STO) optimization capabilities.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">6</span> ESG & Decarbonization AI-Native Solutions</h4>
+                    <p>Sustainable technology platforms supporting environmental compliance, emissions monitoring, and carbon reduction initiatives.</p>
+                </div>
+                <div class="solution-card">
+                    <h4><span class="num">7</span> AI-Powered Spend Optimization</h4>
+                    <p>Intelligent procurement and operational expenditure optimization using advanced analytics and machine learning algorithms.</p>
+                </div>
+            </div>
+
+            <div class="services-section">
+                <h3>Our Services</h3>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <h4>AI Readiness Assessment</h4>
+                        <p>Evaluation & planning</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>AI & Digital Transformation Consulting</h4>
+                        <p>Strategy & roadmap</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Sales & Business Development</h4>
+                        <p>Market expansion</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Marketing & Market Positioning</h4>
+                        <p>Brand growth</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Integration Support</h4>
+                        <p>Technical services</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Field Services</h4>
+                        <p>On-site expertise</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Solutions Building</h4>
+                        <p>Custom development</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page 5: Partners & Contact -->
+    <section class="slide slide-inner">
+        <div class="slide-header">
+            <div class="header-logo">FORTIS <span>EI</span></div>
+            <div class="header-nav">
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot active"></div>
+            </div>
+        </div>
+
+        <div class="page-content">
+            <h2 class="page-title">Partners & Contact</h2>
+
+            <div class="partners-section">
+                <h3 class="tech-section-title" style="text-align: left; margin-bottom: 30px;">Global Technology OEM Partners</h3>
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">IS</div>
+                        <h4>Industrial Scientific</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">BT</div>
+                        <h4>BARTEC</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">CC</div>
+                        <h4>CleanConnect.ai</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">DS</div>
+                        <h4>DataShack</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">CP</div>
+                        <h4>Changing Planet</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">NN</div>
+                        <h4>Nevada Nano</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">PE</div>
+                        <h4>Paxons Energy</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">EK</div>
+                        <h4>Epikso</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">SQ</div>
+                        <h4>Sequantix</h4>
+                    </div>
+                    <div class="partner-logo">
+                        <div class="logo-placeholder">HA</div>
+                        <h4>Hunter AI</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sister-company">
+                <div class="sister-company-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <div>
+                    <h3>Sister Company: Barrier Intelligence</h3>
+                    <p>Strategic partnership delivering integrated process safety barrier management solutions for critical energy infrastructure worldwide.</p>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h3>Contact Us</h3>
+                <p class="cta">Let's discuss your operational goals</p>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                        </div>
+                        <h4>Address</h4>
+                        <p>Qatar</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <h4>Phone</h4>
+                        <p>+974 332 531 13</p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <h4>Email</h4>
+                        <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="97fef9f1f8d7f1f8e5e3fee4f2feb9f4f8fa">fortis@fortisei.com</a></p>
+                    </div>
+                    <div class="contact-info">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                        </div>
+                        <h4>Website</h4>
+                        <p>www.fortisei.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>
