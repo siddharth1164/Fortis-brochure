@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortis EI · Presentation Slideshow</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Times New Roman', Times, serif;
+            overflow: hidden;
+        }
+        .presentation-container {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .slides-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            background-color: #0B253A; /* fallback */
+        }
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+        }
+        /* navigation overlay (simple progress) */
+        .nav-overlay {
+            position: absolute;
+            bottom: 16px;
+            right: 20px;
+            z-index: 50;
+            display: flex;
+            gap: 12px;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(2px);
+            padding: 8px 18px;
+            border-radius: 40px;
+            border: 1px solid #D4AF3744;
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 20px;
+            background: #FFFFFF66;
+            border: 1px solid #D4AF37;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .nav-dot.active-dot {
+            background: #D4AF37;
+            width: 28px;
+            box-shadow: 0 0 8px #D4AF37;
+        }
+        .controls {
+            margin-top: 12px;
+            display: flex;
+            gap: 20px;
+            color: #ccc;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+        .controls button {
+            background: #1a2c3e;
+            border: none;
+            color: #D4AF37;
+            font-family: 'Times New Roman', serif;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            border: 1px solid #D4AF3755;
+            transition: 0.2s;
+        }
+        .controls button:hover {
+            background: #0F2A3F;
+            border-color: #D4AF37;
+        }
+        .slide-index {
+            color: #fff;
+            background: #0B253A;
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid #0070F3;
+        }
+    </style>
+</head>
+<body>
+<div class="presentation-container">
+    <div class="slides-wrapper" id="slidesWrapper">
+
+        <!-- SLIDE 1 (cover) – inline code from first block -->
+        <div class="slide" id="slide1" style="background:#0B253A;">
+            <img src="https://agent-cdn.minimax.io/matrix_agent/20260225/image_tool/output/035822_0b3e/workspace/imgs/fortis_ei_background.png" alt="bg" style="position:absolute;left:0;top:0;width:960px;height:540px;object-fit:cover;opacity:0.4;">
+            <div style="position:absolute;left:0;top:0;width:960px;height:540px;background:#0B253A;opacity:0.7;"></div>
+            <svg width="960" height="4" style="position:absolute;left:0;top:0;"><rect width="960" height="4" fill="#D4AF37"/></svg>
+            <p style="position:absolute;left:50%;top:95px;transform:translateX(-50%);margin:0;width:800px;text-align:center;font-family:'Times New Roman',Times,serif;font-size:84px;font-weight:700;color:#D4AF37;letter-spacing:12px;text-shadow:0 4px 20px rgba(0,112,243,0.3);">FORTIS EI</p>
+            <p style="position:absolute;left:50%;top:195px;transform:translateX(-50%);margin:0;width:600px;text-align:center;font-family:'Times New Roman',Times,serif;font-size:24px;font-weight:400;color:#0070F3;letter-spacing:8px;">Safe <span style="color:#D4AF37;">|</span> Smart <span style="color:#D4AF37;">|</span> Sustainable</p>
+            <p style="position:absolute;left:50%;top:260px;transform:translateX(-50%);margin:0;width:800px;text-align:center;font-family:'Times New Roman',Times,serif;font-size:22px;font-weight:400;color:#ffffff;line-height:1.5;">AI-Native Process Safety Intelligence for<br>High-Consequence Critical Energy Infrastructure</p>
+            <svg width="400" height="2" style="position:absolute;left:50%;top:350px;transform:translateX(-50%);"><rect width="400" height="2" fill="#0070F3" fill-opacity="0.6"/></svg>
+            <p style="position:absolute;left:50%;top:380px;transform:translateX(-50%);margin:0;width:800px;text-align:center;font-family:'Times New Roman',Times,serif;font-size:16px;font-weight:400;color:#ffffff;opacity:0.85;">Strengthening resilience, transparency, and performance across<br>the next generation of energy assets</p>
+            <svg width="320" height="36" style="position:absolute;left:50%;top:450px;transform:translateX(-50%);"><rect width="320" height="36" rx="18" fill="#0070F3" fill-opacity="0.2" stroke="#0070F3" stroke-width="1"/><text x="160" y="18" text-anchor="middle" dominant-baseline="central" font-family="'Times New Roman',Times,serif" font-size="14" fill="#0070F3" letter-spacing="2;">Based in Qatar Science &amp; Technology Park</text></svg>
+            <svg width="960" height="3" style="position:absolute;left:0;bottom:0;"><rect width="960" height="3" fill="#D4AF37" fill-opacity="0.5"/></svg>
+        </div>
+
+        <!-- SLIDE 2 (About & Leadership) -->
+        <div class="slide" id="slide2" style="background:#FFFFFF;">
+            <!-- left navy panel -->
+            <div style="position:absolute; left:0; top:0; width:288px; height:540px; background:#0B253A;">
+                <p style="position:absolute; left:30px; top:45px; margin:0; font-family:'Times New Roman', Times, serif; font-size:28px; font-weight:700; color:#D4AF37; letter-spacing:3px;">WHO WE ARE</p>
+                <p style="position:absolute; left:30px; top:82px; margin:0; font-family:'Times New Roman', Times, serif; font-size:16px; font-weight:400; color:#FFFFFF; font-style:italic;">Intelligence &amp; Experience</p>
+                <svg style="position:absolute; left:30px; top:110px;" width="80" height="2"><rect width="80" height="2" fill="#D4AF37"/></svg>
+                <ul style="position:absolute; left:30px; top:135px; width:228px; margin:0; padding-left:18px; list-style:none;">
+                    <li style="margin-bottom:18px; font-family:'Times New Roman', Times, serif; font-size:12px; font-weight:400; color:#FFFFFF; line-height:1.5;"><span style="color:#D4AF37; margin-right:8px;">&#9654;</span>The future of energy infrastructure will not be defined by digitization alone — it will be defined by structured intelligence, impact-outcomes led.</li>
+                    <li style="margin-bottom:18px; font-family:'Times New Roman', Times, serif; font-size:12px; font-weight:400; color:#FFFFFF; line-height:1.5;"><span style="color:#D4AF37; margin-right:8px;">&#9654;</span>Fortis Energy Intelligence was established to bridge this gap.</li>
+                    <li style="margin-bottom:0; font-family:'Times New Roman', Times, serif; font-size:12px; font-weight:400; color:#FFFFFF; line-height:1.5;"><span style="color:#D4AF37; margin-right:8px;">&#9654;</span>We are a Qatar-based, AI-native industrial technology company focused exclusively on enabling intelligent safety governance and operational transparency across high-consequence critical energy infrastructure.</li>
+                </ul>
+            </div>
+            <!-- right white panel -->
+            <p style="position:absolute; left:330px; top:35px; margin:0; font-family:'Times New Roman', Times, serif; font-size:26px; font-weight:700; color:#0B253A; letter-spacing:2px;">Leadership &amp; Heritage</p>
+            <svg style="position:absolute; left:330px; top:70px;" width="100" height="2"><rect width="100" height="2" fill="#0070F3"/></svg>
+            <p style="position:absolute; left:330px; top:90px; margin:0; font-family:'Times New Roman', Times, serif; font-size:20px; font-weight:700; color:#0B253A;">Dr. Satheesh Kumar</p>
+            <ul style="position:absolute; left:330px; top:125px; width:280px; margin:0; padding-left:18px; list-style:none;">
+                <li style="margin-bottom:10px; font-family:'Times New Roman', Times, serif; font-size:13px; font-weight:400; color:#0B253A; line-height:1.4;"><span style="color:#0070F3; margin-right:8px;">&#9679;</span>20+ Years Oil &amp; Gas Experience</li>
+                <li style="margin-bottom:10px; font-family:'Times New Roman', Times, serif; font-size:13px; font-weight:400; color:#0B253A; line-height:1.4;"><span style="color:#0070F3; margin-right:8px;">&#9679;</span>16+ Years Specialized Fire &amp; Gas (F&amp;G) Domain Expertise in Qatar</li>
+                <li style="margin-bottom:0; font-family:'Times New Roman', Times, serif; font-size:13px; font-weight:400; color:#0B253A; line-height:1.4;"><span style="color:#0070F3; margin-right:8px;">&#9679;</span>Headquartered at Qatar Science &amp; Technology Park (QSTP), Qatar Foundation, Doha</li>
+            </ul>
+            <p style="position:absolute; left:330px; top:230px; margin:0; font-family:'Times New Roman', Times, serif; font-size:14px; font-weight:700; color:#0B253A; letter-spacing:1px;">OUR PRINCIPLES</p>
+            <!-- principle cards -->
+            <svg style="position:absolute; left:330px; top:260px;" width="180" height="60"><rect width="180" height="60" rx="4" fill="#0B253A"/><text x="25" y="22" font-family="'Times New Roman', Times, serif" font-size="10" font-weight="700" fill="#D4AF37">1</text><text x="45" y="30" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="400" fill="#FFFFFF">Safety is</text><text x="45" y="44" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="700" fill="#FFFFFF">Foundational</text></svg>
+            <svg style="position:absolute; left:520px; top:260px;" width="180" height="60"><rect width="180" height="60" rx="4" fill="#0B253A"/><text x="25" y="22" font-family="'Times New Roman', Times, serif" font-size="10" font-weight="700" fill="#D4AF37">2</text><text x="45" y="30" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="400" fill="#FFFFFF">Technology</text><text x="45" y="44" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="700" fill="#FFFFFF">Must Be Credible</text></svg>
+            <svg style="position:absolute; left:710px; top:260px;" width="180" height="60"><rect width="180" height="60" rx="4" fill="#0B253A"/><text x="25" y="22" font-family="'Times New Roman', Times, serif" font-size="10" font-weight="700" fill="#D4AF37">3</text><text x="45" y="30" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="400" fill="#FFFFFF">Sector</text><text x="45" y="44" font-family="'Times New Roman', Times, serif" font-size="11" font-weight="700" fill="#FFFFFF">Discipline First</text></svg>
+            <!-- mission -->
+            <p style="position:absolute; left:330px; top:350px; margin:0; font-family:'Times New Roman', Times, serif; font-size:14px; font-weight:700; color:#0B253A; letter-spacing:1px;">MISSION</p>
+            <svg style="position:absolute; left:330px; top:375px;" width="560" height="90"><rect width="560" height="90" rx="4" fill="#F5F5F5" stroke="#0070F3" stroke-width="1"/><rect width="4" height="90" rx="2" fill="#D4AF37"/><text x="25" y="50" font-family="'Times New Roman', Times, serif" font-size="13" fill="#0B253A" font-style="italic">"To support national energy operators in strengthening safety oversight,</text><text x="25" y="70" font-family="'Times New Roman', Times, serif" font-size="13" fill="#0B253A" font-style="italic">structured digitalization, and emission management — through technologies</text><text x="25" y="90" font-family="'Times New Roman', Times, serif" font-size="13" fill="#0B253A" font-style="italic">that are practical, deployable, and regulator-aligned."</text></svg>
+            <svg style="position:absolute; left:0; top:0;" width="4" height="540"><rect width="4" height="540" fill="#0070F3"/></svg>
+            <svg style="position:absolute; right:32px; bottom:24px;" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#0B253A"/><text x="18" y="18" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#FFFFFF">2</text></svg>
+        </div>
+
+        <!-- SLIDE 3 (Core AI Solutions) -->
+        <div class="slide" id="slide3" style="background:#FFFFFF;">
+            <div style="position:absolute; left:0; top:0; width:960px; height:90px; background:#0B253A;"></div>
+            <p style="position:absolute; left:40px; top:22px; margin:0; font-family:'Times New Roman', Times, serif; font-size:32px; font-weight:700; color:#FFFFFF; letter-spacing:2px;">AI-NATIVE SOLUTIONS</p>
+            <p style="position:absolute; left:40px; top:58px; margin:0; font-family:'Times New Roman', Times, serif; font-size:18px; font-weight:400; color:#D4AF37; letter-spacing:1px;">Safety & Operations</p>
+            <div style="position:absolute; left:0; top:85px; width:960px; height:5px; background:#D4AF37;"></div>
+            <!-- cards -->
+            <div style="position:absolute; left:30px; top:115px; width:440px; height:190px; background:#FFFFFF; border:2px solid #0B253A; border-radius:8px;"><div style="position:absolute; left:0; top:0; width:8px; height:190px; background:#0070F3; border-radius:6px 0 0 6px;"></div><svg style="position:absolute; left:30px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0B253A"/><path d="M20 8 L20 32 M8 20 L32 20" stroke="#D4AF37" stroke-width="3"/><circle cx="20" cy="20" r="8" fill="none" stroke="#D4AF37" stroke-width="2"/></svg><p style="position:absolute; left:80px; top:22px; width:340px; font-size:18px; font-weight:700; color:#0B253A;">Process Safety Barrier Intelligence</p><p style="position:absolute; left:30px; top:75px; width:390px; font-size:13px; color:#333; line-height:1.5;">AI-driven continuous validation of safety barriers in hydrocarbon facilities. Exposes invisible dead zones critical to protect people, plant and planet.</p><p style="position:absolute; left:30px; top:130px; width:390px; font-size:12px; color:#0070F3;">Digital snapshot • Gap analysis • Barrier availability tracking</p></div>
+            <div style="position:absolute; left:490px; top:115px; width:440px; height:190px; background:#FFFFFF; border:2px solid #0B253A; border-radius:8px;"><div style="position:absolute; left:0; top:0; width:8px; height:190px; background:#D4AF37;"></div><svg style="position:absolute; left:30px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0B253A"/><path d="M12 28 L20 12 L28 28" stroke="#0070F3" stroke-width="2.5" fill="none"/><circle cx="20" cy="8" r="3" fill="#D4AF37"/></svg><p style="position:absolute; left:80px; top:22px; width:340px; font-size:18px; font-weight:700; color:#0B253A;">Advanced Multi-Hazard Detection</p><p style="position:absolute; left:30px; top:75px; width:390px; font-size:13px; color:#333;">Gas leaks, liquid spills, flare monitoring, tank level tracking. Fire & smoke detection, PPE compliance, red zone monitoring.</p><p style="position:absolute; left:30px; top:145px; width:390px; font-size:12px; color:#0070F3;">AI-powered computer vision and sensor fusion</p></div>
+            <div style="position:absolute; left:30px; top:325px; width:440px; height:190px; background:#FFFFFF; border:2px solid #0B253A; border-radius:8px;"><div style="position:absolute; left:0; top:0; width:8px; height:190px; background:#0070F3;"></div><svg style="position:absolute; left:30px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0B253A"/><path d="M10 20 Q20 10 30 20" stroke="#D4AF37" stroke-width="2.5" fill="none"/><path d="M12 26 Q20 20 28 26" stroke="#0070F3" stroke-width="2" fill="none"/><circle cx="20" cy="16" r="2" fill="#D4AF37"/></svg><p style="position:absolute; left:80px; top:22px; width:340px; font-size:18px; font-weight:700; color:#0B253A;">Wireless Connectivity & Smart Digitalisation</p><p style="position:absolute; left:30px; top:75px; width:390px; font-size:13px; color:#333;">Explosion-proof wireless solutions for hazardous areas (ATEX/IECEx). IIoT integration, RTLS.</p><p style="position:absolute; left:30px; top:145px; width:390px; font-size:12px; color:#0070F3;">Smart factories • Mobile worker solutions</p></div>
+            <div style="position:absolute; left:490px; top:325px; width:440px; height:190px; background:#FFFFFF; border:2px solid #0B253A; border-radius:8px;"><div style="position:absolute; left:0; top:0; width:8px; height:190px; background:#D4AF37;"></div><svg style="position:absolute; left:30px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0B253A"/><circle cx="20" cy="20" r="12" fill="none" stroke="#0070F3" stroke-width="2"/><circle cx="20" cy="20" r="5" fill="#D4AF37"/><path d="M20 8 L20 4 M20 32 L20 36 M8 20 L4 20 M32 20 L36 20" stroke="#0070F3" stroke-width="2"/></svg><p style="position:absolute; left:80px; top:22px; width:340px; font-size:18px; font-weight:700; color:#0B253A;">AI-Driven Autonomous Remote Site Operations</p><p style="position:absolute; left:30px; top:75px; width:390px; font-size:13px; color:#333;">Autonomous365 ecosystem for remote site management. GenAI assistants for Oil & Gas operations.</p><p style="position:absolute; left:30px; top:145px; width:390px; font-size:12px; color:#0070F3;">Real-time empirical data for predictive analytics</p></div>
+            <svg style="position:absolute; right:32px; bottom:24px;" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#0B253A"/><text x="18" y="18" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#FFFFFF">3</text></svg>
+        </div>
+
+        <!-- SLIDE 4 (Sustainability & Optimization) -->
+        <div class="slide" id="slide4" style="background:#FFFFFF;">
+            <div style="position:absolute; left:0; top:0; width:960px; height:90px; background:#0B253A;"></div>
+            <p style="position:absolute; left:40px; top:20px; margin:0; font-size:32px; font-weight:700; color:#FFFFFF;">SUSTAINABILITY & OPTIMIZATION</p>
+            <p style="position:absolute; left:40px; top:58px; margin:0; font-size:18px; font-weight:400; color:#D4AF37;">ESG & Decarbonization Solutions</p>
+            <svg style="position:absolute; left:0; top:90px; width:960px; height:3px;"><rect width="960" height="3" fill="#D4AF37"/></svg>
+            <!-- three cards -->
+            <div style="position:absolute; left:20px; top:115px; width:293px; height:400px; background:#F8FAFC; border:1px solid #E2E8F0;"><div style="position:absolute; left:0; top:0; width:4px; height:400px; background:#0070F3;"></div><svg style="position:absolute; left:20px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0070F3" fill-opacity="0.15"/><path d="M20 8 L20 20 L28 20" stroke="#0070F3" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="3" fill="#0070F3"/></svg><p style="position:absolute; left:20px; top:70px; width:253px; font-size:17px; font-weight:700; color:#0B253A;">Asset Management & STO Intelligence</p><p style="position:absolute; left:20px; top:115px; width:253px; font-size:12px; color:#475569;">IoT + AI asset health tracking with predictive maintenance</p><p style="position:absolute; left:20px; top:148px; width:253px; font-size:12px; color:#475569;">Real-time monitoring, red alerts on asset downtime</p><p style="position:absolute; left:20px; top:181px; width:253px; font-size:12px; color:#475569;">Intelligent Shutdown & Turnaround (STO) Operations</p><svg style="position:absolute; left:20px; top:225px; width:253px; height:1px;"><rect width="253" height="1" fill="#E2E8F0"/></svg><p style="position:absolute; left:20px; top:240px; color:#0070F3; font-size:13px; font-weight:700;">Key Metrics</p><p style="position:absolute; left:20px; top:265px; font-size:11px;">• Planning: 12 months → weeks</p><p style="position:absolute; left:20px; top:290px; font-size:11px;">• Unplanned downtime: -20-30%</p></div>
+            <div style="position:absolute; left:333px; top:115px; width:293px; height:400px; background:#F8FAFC; border:1px solid #E2E8F0;"><div style="position:absolute; left:0; top:0; width:4px; height:400px; background:#D4AF37;"></div><svg style="position:absolute; left:20px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#D4AF37" fill-opacity="0.15"/><path d="M20 10 L20 30 M10 20 L30 20" stroke="#D4AF37" stroke-width="2.5"/><path d="M14 14 L26 26 M26 14 L14 26" stroke="#D4AF37" stroke-width="2" opacity="0.6"/></svg><p style="position:absolute; left:20px; top:70px; width:253px; font-size:17px; font-weight:700; color:#0B253A;">ESG & Decarbonization AI Solutions</p><p style="position:absolute; left:20px; top:115px; font-size:12px; color:#475569;">Empirical energy & carbon accounting - measure and monetize carbons</p><p style="position:absolute; left:20px; top:148px; font-size:12px; color:#475569;">Methane tracking & compliance (OGMP 2.0, EPA)</p><p style="position:absolute; left:20px; top:181px; font-size:12px;">Scope 3 Decarbonization & ESG Roadmap</p><p style="position:absolute; left:20px; top:214px; font-size:12px;">Blockchain-enabled Environmental Attribute Certificates</p><svg style="position:absolute; left:20px; top:258px; width:253px; height:1px;"><rect width="253" height="1" fill="#E2E8F0"/></svg><p style="position:absolute; left:20px; top:273px; color:#D4AF37; font-weight:700;">Compliance & Innovation</p><p style="position:absolute; left:20px; top:298px; font-size:11px;">• OGMP 2.0 & EPA compliant</p><p style="position:absolute; left:20px; top:323px; font-size:11px;">• Blockchain-verified EACs</p></div>
+            <div style="position:absolute; left:646px; top:115px; width:293px; height:400px; background:#F8FAFC; border:1px solid #E2E8F0;"><div style="position:absolute; left:0; top:0; width:4px; height:400px; background:#0B253A;"></div><svg style="position:absolute; left:20px; top:20px;" width="40" height="40"><circle cx="20" cy="20" r="18" fill="#0B253A" fill-opacity="0.15"/><path d="M12 24 L18 18 L24 22 L30 12" stroke="#0B253A" stroke-width="2.5" fill="none"/><circle cx="12" cy="24" r="2" fill="#0B253A"/><circle cx="18" cy="18" r="2" fill="#0B253A"/><circle cx="24" cy="22" r="2" fill="#0B253A"/><circle cx="30" cy="12" r="2" fill="#0B253A"/></svg><p style="position:absolute; left:20px; top:70px; font-size:17px; font-weight:700;">AI-Powered Spend Optimization</p><p style="position:absolute; left:20px; top:115px; font-size:12px;">Turnkey SaaS for AP anomaly detection</p><p style="position:absolute; left:20px; top:148px; font-size:12px;">Rebate management, GPO fees recovery</p><p style="position:absolute; left:20px; top:181px; font-size:12px;">Payment terms optimization & working capital</p><svg style="position:absolute; left:20px; top:225px; width:253px; height:1px;"><rect width="253" height="1" fill="#E2E8F0"/></svg><p style="position:absolute; left:20px; top:240px; font-weight:700; color:#0B253A;">Performance</p><p style="position:absolute; left:20px; top:265px; font-size:11px;">• 98% accuracy rate</p><p style="position:absolute; left:20px; top:290px; font-size:11px;">• Savings: 1-3 months</p></div>
+            <svg style="position:absolute; right:32px; bottom:24px;" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#0B253A"/><text x="18" y="18" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#FFFFFF">4</text></svg>
+        </div>
+
+        <!-- SLIDE 5 (Strategic Technology Partners) -->
+        <div class="slide" id="slide5" style="background:#0B253A;">
+            <svg width="960" height="540" style="position:absolute;top:0;left:0;"><defs><pattern id="dots" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><circle cx="15" cy="15" r="1.5" fill="#FFFFFF" fill-opacity="0.06"/></pattern></defs><rect width="960" height="540" fill="url(#dots)"/></svg>
+            <svg width="960" height="3" style="position:absolute;top:0;"><rect width="960" height="3" fill="#D4AF37"/></svg>
+            <div style="position:absolute; left:40px; top:28px; width:880px; text-align:center;"><p style="margin:0; font-size:32px; font-weight:700; color:#FFFFFF; letter-spacing:4px;">STRATEGIC TECHNOLOGY PARTNERS</p><svg width="200" height="2" style="margin-top:12px;"><rect width="200" height="2" fill="#D4AF37"/></svg><p style="margin:10px 0 0 0; font-size:16px; color:#0070F3;">Global OEM Partners Powering Our Solutions</p></div>
+            <div style="position:absolute; left:60px; top:135px; width:840px; height:180px;">
+                <div style="position:absolute; left:0; top:0; width:156px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">INDUSTRIAL<br>SCIENTIFIC</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Industrial Scientific</p></div>
+                <div style="position:absolute; left:168px; top:0;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:11px; font-weight:700; color:#0B253A;">BARTEC</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">BARTEC</p></div>
+                <div style="position:absolute; left:336px; top:0;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">CLEAN<br>CONNECT.ai</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">CleanConnect.ai</p></div>
+                <div style="position:absolute; left:504px; top:0;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">DATA<br>SHACK</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">DataShack</p></div>
+                <div style="position:absolute; left:672px; top:0;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:9px; font-weight:700; color:#0B253A;">CHANGING<br>PLANET SOLUTIONS</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Changing Planet</p></div>
+                <div style="position:absolute; left:0; top:95px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">NEVADA<br>NANO</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Nevada Nano</p></div>
+                <div style="position:absolute; left:168px; top:95px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">PAXONS<br>ENERGY</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Paxons Energy</p></div>
+                <div style="position:absolute; left:336px; top:95px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:11px; font-weight:700; color:#0B253A;">EPIKSO</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Epikso</p></div>
+                <div style="position:absolute; left:504px; top:95px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:10px; font-weight:700; color:#0B253A;">SEQUAN<br>TIX</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Sequantix</p></div>
+                <div style="position:absolute; left:672px; top:95px;"><div style="width:140px; height:60px; background:#FFFFFF; border-radius:6px; display:flex; align-items:center; justify-content:center;"><span style="font-size:11px; font-weight:700; color:#0B253A;">HUNTER AI</span></div><p style="text-align:center; font-size:11px; color:#FFFFFF;">Hunter AI</p></div>
+            </div>
+            <div style="position:absolute; left:60px; top:330px; width:840px;"><p style="margin:0; font-size:14px; color:#FFFFFF; text-align:center;">Fortis EI partners exclusively with world-class industrial technology companies who are not just product suppliers — they are client-impact-driven, outcome-led organizations.</p><svg width="400" height="2" style="margin:16px auto; display:block;"><rect width="400" height="2" fill="#D4AF37" fill-opacity="0.5"/></svg><p style="margin:0; font-size:13px; color:#0070F3; text-align:center;">We align global industrial technologies with the operational and regulatory realities of the Qatar Oil & Gas sector — delivering intelligent, integrated solutions that enable safer, smarter, and more sustainable energy operations.</p></div>
+            <svg style="position:absolute; right:32px; bottom:24px;" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#D4AF37"/><text x="18" y="18" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="600" fill="#0B253A">5</text></svg>
+        </div>
+
+        <!-- SLIDE 6 (Contact) -->
+        <div class="slide" id="slide6" style="background:#FFFFFF;">
+            <div style="position:absolute; left:0; top:0; width:340px; height:540px; background:#0B253A;">
+                <svg width="340" height="3" style="position:absolute; top:0;"><rect width="340" height="3" fill="#D4AF37"/></svg>
+                <p style="position:absolute; left:40px; top:60px; font-size:42px; font-weight:700; color:#D4AF37; letter-spacing:4px;">FORTIS EI</p>
+                <p style="position:absolute; left:40px; top:115px; font-size:14px; color:#FFFFFF; letter-spacing:2px;">Safe | Smart | Sustainable</p>
+                <svg width="260" height="2" style="position:absolute; left:40px; top:150px;"><rect width="260" height="2" fill="#D4AF37" fill-opacity="0.6"/></svg>
+                <div style="position:absolute; left:40px; top:180px; width:260px;">
+                    <p style="margin:0 0 8px; font-size:11px; color:#D4AF37;">PHONE / WHATSAPP</p><p style="margin:0 0 24px; font-size:15px; color:#FFFFFF;">+974 332 531 13</p>
+                    <p style="margin:0 0 8px; font-size:11px; color:#D4AF37;">WEBSITE</p><p style="margin:0 0 24px; font-size:15px; color:#FFFFFF;">www.fortisei.com</p>
+                    <p style="margin:0 0 8px; font-size:11px; color:#D4AF37;">ADDRESS</p><p style="margin:0 0 24px; font-size:13px; color:#FFFFFF; line-height:1.5;">Qatar Science & Technology Park (QSTP), Qatar Foundation, Doha, Qatar</p>
+                    <p style="margin:0 0 8px; font-size:11px; color:#D4AF37;">COVERAGE</p><p style="margin:0 0 24px; font-size:15px; color:#FFFFFF;">GCC / Middle East</p>
+                    <p style="margin:0 0 8px; font-size:11px; color:#D4AF37;">LINKEDIN</p><p style="margin:0; font-size:14px; color:#FFFFFF;">linkedin.com/company/fortis-ei</p>
+                </div>
+                <svg width="340" height="3" style="position:absolute; bottom:0;"><rect width="340" height="3" fill="#D4AF37"/></svg>
+            </div>
+            <div style="position:absolute; left:340px; top:0; width:620px; height:540px; background:#FFFFFF;">
+                <div style="position:absolute; left:50px; top:50px; width:520px;"><p style="margin:0; font-size:28px; font-weight:700; color:#0B253A; text-align:center;">LET'S BUILD THE FUTURE OF ENERGY TOGETHER</p><p style="margin:16px 0 0; font-size:18px; color:#0070F3; text-align:center;">Partner with Fortis EI</p><svg width="200" height="2" style="display:block; margin:24px auto;"><rect width="200" height="2" fill="#D4AF37"/></svg></div>
+                <div style="position:absolute; left:50px; top:200px; width:520px;"><p style="margin:0; font-size:20px; font-weight:600; color:#0B253A; text-align:center;">Ready to transform your energy operations?</p><p style="margin:20px 0 0; font-size:14px; color:#0B253A; text-align:center; line-height:1.7;">Contact us for a free AI Solutions Consulting session — tailored to your facility's specific safety, emissions, and digitalization challenges.</p></div>
+                <div style="position:absolute; left:50px; bottom:80px; width:520px;"><svg width="200" height="2" style="display:block; margin:0 auto 24px;"><rect width="200" height="2" fill="#D4AF37"/></svg><p style="margin:0; font-size:16px; font-weight:600; color:#0B253A; text-align:center;">Building a Safe, Smart, and Sustainable Energy Future</p></div>
+            </div>
+            <svg style="position:absolute; right:32px; bottom:24px;" width="36" height="36"><circle cx="18" cy="18" r="18" fill="#0B253A"/><text x="18" y="18" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#FFFFFF">6</text></svg>
+        </div>
+    </div>
+
+    <!-- navigation dots + controls -->
+    <div class="nav-overlay" id="navDots">
+        <div class="nav-dot" data-index="0"></div>
+        <div class="nav-dot" data-index="1"></div>
+        <div class="nav-dot" data-index="2"></div>
+        <div class="nav-dot" data-index="3"></div>
+        <div class="nav-dot" data-index="4"></div>
+        <div class="nav-dot" data-index="5"></div>
+    </div>
+</div>
+<div class="controls">
+    <button id="prevSlide">◀ PREV</button>
+    <span class="slide-index" id="slideCounter">1 / 6</span>
+    <button id="nextSlide">NEXT ▶</button>
+</div>
+
+<script>
+    (function() {
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.nav-dot');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        const counter = document.getElementById('slideCounter');
+        let currentIdx = 0;
+        const total = slides.length;
+        let autoTimer = null;
+        const AUTO_INTERVAL = 7000; // 7 seconds
+
+        function updateSlide(index) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === index);
+            });
+            dots.forEach((d, i) => {
+                d.classList.toggle('active-dot', i === index);
+            });
+            counter.innerText = (index + 1) + ' / ' + total;
+        }
+
+        function nextSlide() {
+            currentIdx = (currentIdx + 1) % total;
+            updateSlide(currentIdx);
+            resetTimer();
+        }
+
+        function prevSlide() {
+            currentIdx = (currentIdx - 1 + total) % total;
+            updateSlide(currentIdx);
+            resetTimer();
+        }
+
+        function goToSlide(index) {
+            if (index >= 0 && index < total) {
+                currentIdx = index;
+                updateSlide(currentIdx);
+                resetTimer();
+            }
+        }
+
+        function resetTimer() {
+            if (autoTimer) clearInterval(autoTimer);
+            autoTimer = setInterval(() => {
+                nextSlide();
+            }, AUTO_INTERVAL);
+        }
+
+        // event listeners
+        prevBtn.addEventListener('click', prevSlide);
+        nextBtn.addEventListener('click', nextSlide);
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => goToSlide(i));
+        });
+
+        // initial
+        updateSlide(0);
+        resetTimer();
+
+        // optional: pause on hover (user-friendly)
+        const container = document.querySelector('.presentation-container');
+        container.addEventListener('mouseenter', () => {
+            if (autoTimer) clearInterval(autoTimer);
+            autoTimer = null;
+        });
+        container.addEventListener('mouseleave', () => {
+            resetTimer();
+        });
+
+        // scaling function (from original) – to keep 960x540 centered
+        function scalePresentation() {
+            const slideContainer = document.querySelector('.presentation-container');
+            if (!slideContainer) return;
+            const containerWidth = 960;
+            const containerHeight = 540;
+            const windowWidth = window.innerWidth;
+            const windowHeight = window.innerHeight;
+            const scaleX = windowWidth / containerWidth;
+            const scaleY = windowHeight / containerHeight;
+            const scale = Math.min(scaleX, scaleY) * 0.98; // tiny margin
+
+            slideContainer.style.width = containerWidth + 'px';
+            slideContainer.style.height = containerHeight + 'px';
+            slideContainer.style.transform = `scale(${scale})`;
+            slideContainer.style.transformOrigin = 'center center';
+        }
+
+        window.addEventListener('load', scalePresentation);
+        window.addEventListener('resize', scalePresentation);
+    })();
+</script>
+</body>
+</html>
